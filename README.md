@@ -1,4 +1,8 @@
-# Custom shell for MiniMicro
-This is a shell that adds more flexibility to the default shell.
+# The Slow Shell (DSS)
+DSS is a small custom shell for MiniMicro.
 
-**Documentation will be added soon**
+# NOTE:
+This projects is WIP. Expect bugs
+
+# Shell features
+
