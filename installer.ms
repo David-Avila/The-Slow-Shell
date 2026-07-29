@@ -24,6 +24,7 @@ cd "/usr"
 
 stF = file.open("startup.ms", "a+")
 stF.write char(13)
+stF.write char(13)
 stF.write "env.shell = ""/usr/dss/dss"""
 stF.close
 
