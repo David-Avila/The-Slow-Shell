@@ -343,10 +343,23 @@ end function
 
 globals.dss.update = function
 	cd "/usr/dss"
-
+	
+	print "Updating    [-----------]", ""
+	wait 0.5
+	text.column = 13
+	
+	progress = function
+		print "#", ""
+		wait 0.25
+	end function
+	
+	progress
+	
 	// Downloading files
 	fileServer = "https://github.com/David-Avila/The-Slow-Shell/raw/refs/heads/main/"
 	dssFiles = ["dss.ms", "loader.ms", "utils.ms", "parser.ms", "keywords.ms"]
+	
+	progress
 	
 	for f in dssFiles	
 		delete f
@@ -357,10 +370,17 @@ globals.dss.update = function
 		fl = file.open(f, "w+")
 		fl.write raw
 		fl.close
+		
+		progress
 	end for
+	
+	progress
+	progress
+	progress
+	progress
+	print ""
 	
 	print "Reboot MiniMicro to apply update."
 end function
-
 
 
