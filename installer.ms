@@ -6,7 +6,7 @@ end if
 cd "/usr/dss"
 
 // Downloading files
-fileServer = "http://127.0.0.1:8000/"
+fileServer = "https://github.com/David-Avila/The-Slow-Shell/raw/refs/heads/main/"
 dssFiles = ["dss.ms", "loader.ms", "utils.ms", "parser.ms", "keywords.ms"]
 
 for f in dssFiles	
