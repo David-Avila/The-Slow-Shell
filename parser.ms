@@ -75,7 +75,7 @@ globals.dss.parse = function(cmd, argc, argv)
 	  "reboot": @reboot,
 	  "mkdir": @mkdir,
 	  "view": @view,
-	  "reset": @dss.cReset
+	  "reset": @dss.cReset,
 	  "help": @dss.help}
 	
 	addons = {
