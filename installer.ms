@@ -14,7 +14,7 @@ for f in dssFiles
 	raw = http.get(p)
 	
 	fl = file.open(f, "w+")
-	fl.write raw.utf8
+	fl.write raw
 	fl.close
 end for
 
