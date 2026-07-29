@@ -52,6 +52,16 @@ globals.dss.cReset = function
 	setupDSS
 end function
 
+globals.dss.help = function
+	dss.formatPrint "%#cdd6f4 DSS % help:\n"
+	print "==> Addons:"
+	dss.formatPrint "   ==> %#a6e3a1 preset %: Change the terminal theme\n"
+	dss.formatPrint "   ==> %#a6e3a1 ! %: Access recent files buffer"
+	dss.formatPrint " . For more type %#a6e3a1!help%.\n"
+	dss.formatPrint "%#cdd6f4 MiniMicro % help:\n"
+	help
+end function
+
 globals.dss.parse = function(cmd, argc, argv)
 	built_in = {
 	  "run": @run,
@@ -65,7 +75,8 @@ globals.dss.parse = function(cmd, argc, argv)
 	  "reboot": @reboot,
 	  "mkdir": @mkdir,
 	  "view": @view,
-	  "reset": @dss.cReset}
+	  "reset": @dss.cReset
+	  "help": @dss.help}
 	
 	addons = {
 	  "echo": @echo,
