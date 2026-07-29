@@ -52,14 +52,16 @@ globals.dss.cReset = function
 	setupDSS
 end function
 
-globals.dss.help = function
+globals.dss.cHelp = function
+	clear
 	dss.formatPrint "%#cdd6f4 DSS % help:\n"
 	print "==> Addons:"
 	dss.formatPrint "   ==> %#a6e3a1 preset %: Change the terminal theme\n"
-	dss.formatPrint "   ==> %#a6e3a1 ! %: Access recent files buffer"
-	dss.formatPrint " . For more type %#a6e3a1!help%.\n"
-	dss.formatPrint "%#cdd6f4 MiniMicro % help:\n"
+	dss.formatPrint "   ==> %#a6e3a1 ! %: Access files in buffer.\n"
+	dss.formatPrint "   ==> %#a6e3a1 chuser %: Change your username. Current username is %#a6e3a1" + dss.data.user + "%.\n"
+	dss.formatPrint "\n%#cdd6f4 MiniMicro % help:\n"
 	help
+	dss.formatPrint "%#cdd6f4 DSS% doesn't need quotation marks!. And also some built-in functions that need arguments are broken :(.\n"	
 end function
 
 globals.dss.parse = function(cmd, argc, argv)
@@ -76,7 +78,7 @@ globals.dss.parse = function(cmd, argc, argv)
 	  "mkdir": @mkdir,
 	  "view": @view,
 	  "reset": @dss.cReset,
-	  "help": @dss.help}
+	  "help": @dss.cHelp}
 	
 	addons = {
 	  "echo": @echo,
@@ -108,13 +110,14 @@ globals.dss.parse = function(cmd, argc, argv)
 		res = null
 		if pr == null then
 			if args.len > 0 then
-				res = fn(args.join(" "))
+				ar = args.join(" ")
+				res = fn(ar)
 			else
 				res = fn
 			end if
 		else
 			if args.len > 0 then
-				fn[pr](args.join(" "))
+				fn[pr] args.join(" ")
 			else
 				res = fn[pr]
 			end if

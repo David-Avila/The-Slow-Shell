@@ -55,7 +55,7 @@ start = function
 	end if
 	
 	dss.data = globals.setupDSS
-	debug_on = false
+	debug_on = true
 	
 	while true
 		gfx.clear "#1e1e2e"
