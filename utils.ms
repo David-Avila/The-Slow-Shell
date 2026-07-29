@@ -349,16 +349,16 @@ globals.dss.update = function
 	dssFiles = ["dss.ms", "loader.ms", "utils.ms", "parser.ms", "keywords.ms"]
 	
 	for f in dssFiles	
-		delete i
-
+		delete f
+		
 		p = fileServer + f
 		raw = http.get(p)
-	
+		
 		fl = file.open(f, "w+")
 		fl.write raw
 		fl.close
 	end for
-
+	
 	print "Reboot MiniMicro to apply update."
 end function
 
