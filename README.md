@@ -36,6 +36,8 @@ custom.defaultConfigFile = "/usr/.config/dss_conf.ms"
 custom.configFile = "/usr/.config/dss_conf.ms"
 ```
 
+`custom.newLine` controls whether or not to add a new empty line before printing the prompt, so it's easier to read. Set it to `"0"` to disable it.
+
 DSS allows you to customize your terminal prompt with colors, strings and a couple of built-in keywords. Edit `custom.prompt` to change the look of your terminal.
 
 ## Undestanding the formatter
@@ -45,7 +47,10 @@ An example:
 ```
 custom.prompt = "%#ffffff Hello DSS %"
 ```
+
 This code will write " Hello DSS " in white. Try changing the hex code and see how the prompt behaves.
+
+If you want to use multiple lines (like presets 1 and 2), you can add `\n` to the string to add a new line.
 
 ## Keywords
 You can use a couple of keywords to make the terminal more dynamic. They are used with the `%{KEYWORDS}` sintax.
