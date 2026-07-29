@@ -28,6 +28,8 @@ stF.write char(13)
 stF.write "env.shell = ""/usr/dss/dss"""
 stF.close
 
+cd "/"
+
 // greet message
 text.color = "#89b4fa"
 print "DSS", ""
