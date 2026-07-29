@@ -85,7 +85,8 @@ globals.dss.parse = function(cmd, argc, argv)
 	  "l": @dss.ls,
 	  "cat": @view,
 	  "preset": @dss.preset,
-	  "chuser": @dss.changeUser}
+	  "chuser": @dss.changeUser,
+	  "update": @dss.update}
 	
 	prop = null
 	

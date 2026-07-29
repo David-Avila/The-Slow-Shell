@@ -341,7 +341,26 @@ globals.dss.changeUser = function(newUserName)
 	end if
 end function
 
+globals.dss.update = function
+	cd "/usr/dss"
 
+	// Downloading files
+	fileServer = "https://github.com/David-Avila/The-Slow-Shell/raw/refs/heads/main/"
+	dssFiles = ["dss.ms", "loader.ms", "utils.ms", "parser.ms", "keywords.ms"]
+	
+	for f in dssFiles	
+		delete i
+
+		p = fileServer + f
+		raw = http.get(p)
+	
+		fl = file.open(f, "w+")
+		fl.write raw
+		fl.close
+	end for
+
+	print "Reboot MiniMicro to apply update."
+end function
 
 
 
