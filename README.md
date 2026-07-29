@@ -2,7 +2,7 @@
 DSS is a small custom shell for MiniMicro.
 
 # NOTE:
-This projects is **WIP**. Expect bugs
+This projects is **WIP**. There are a bugs, mainly when executing built-in commands, its better to `exit` out of the shell, execute them, then `exit` again to return to DSS.
 
 # How to install
 Just copy and paste this line into MiniMicro's terminal
