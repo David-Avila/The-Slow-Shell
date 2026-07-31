@@ -1,18 +1,20 @@
-globals.dss = {}
+
+if not globals.hasIndex("dss") then
+	globals.dss = {}
+	
+	// default data
+	dss.recentFiles = []
+	dss.data = {}
+	dss.data.user = "user"
+	dss.data.newLine = true
+	dss.data.prompt = "%#55ee55$->%"
+	dss.data.defaultConfigFile = "/usr/.config/dss_conf.ms"
+	dss.data.configFile = "/usr/.config/dss_conf.ms"
+end if
 
 if not env.importPaths.hasIndex("/usr/dss") then
 	env.importPaths.push "/usr/dss"
 end if
-
-
-// default data
-dss.recentFiles = []
-dss.data = {}
-dss.data.user = "user"
-dss.data.newLine = true
-dss.data.prompt = "%#55ee55$->%"
-dss.data.defaultConfigFile = "/usr/.config/dss_conf.ms"
-dss.data.configFile = "/usr/.config/dss_conf.ms"
 
 import "loader"
 dss.loadConfig

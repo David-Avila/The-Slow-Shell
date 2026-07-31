@@ -8,7 +8,7 @@ editFile = function(f)
 		
 		found = false
 		for i in dss.recentFiles
-			if f == i.name then
+			if file.name(f) == i.name then
 				found = true
 				break
 			end if
