@@ -19,6 +19,7 @@ end if
 import "loader"
 dss.loadConfig
 
+import "listUtil"
 import "utils"
 import "parser"
 
@@ -72,12 +73,20 @@ start = function
 		
 		key.clear
 		text.color = "#b4befe"
-		line = input
+		line = input("")
 		// todo: trim spaces
 		
 		if line == "" then
 			continue
 		end if
+		
+		while line.len > 0
+			if line[0] == "" then
+				line.removeVal line[0]
+			else
+				break
+			end if
+		end while
 		
 		line = line.split(" ")
 		

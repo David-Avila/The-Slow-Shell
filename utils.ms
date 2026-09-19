@@ -295,7 +295,7 @@ globals.dss.history = function(cmd="!")
 			for i in range(0, dss.recentFiles.len-1)
 				fol = dss.recentFiles[i].folder
 				nam = dss.recentFiles[i].name
-				print i + " -> " + fol + "/" + nam
+				dss.formatPrint "%#89dceb" + nam + "% -> " + fol + "/" + nam + "\n"
 			end for
 		end if
 	else
@@ -327,7 +327,7 @@ globals.dss.history = function(cmd="!")
 			for i in possibleFiles
 				fol = dss.recentFiles[i].folder
 				nam = dss.recentFiles[i].name
-				print i + " -> " + fol + "/" + nam
+				dss.formatPrint "%#89dceb" + nam + "% -> " + fol + "/" + nam + "\n"
 			end for
 		end if
 	end if
