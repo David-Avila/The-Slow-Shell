@@ -10,7 +10,7 @@ editFile = function(f)
 		
 		found = false
 		for i in dss.recentFiles
-			if file.name(f) == i.name + ".ms" then
+			if file.name(f) == i.name then
 				found = true
 				break
 			end if
@@ -24,7 +24,7 @@ editFile = function(f)
 	else
 		found = false
 		for i in dss.recentFiles
-			if f == i.name then
+			if f == i.name or f+".ms" == i.name then
 				found = true
 				break
 			end if
