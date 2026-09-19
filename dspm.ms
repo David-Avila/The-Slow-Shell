@@ -81,11 +81,14 @@ install = function(pkgList)
 		i = 0
 		m = toInstall.len
 		
+		success = false
+		
 		print "Installed [0/" + m + "]"
 		for p in toInstall
 			wait 0.35
-			download p, fold
+			success = download(p, fold)
 			
+			if not success then break
 			i += 1
 			
 			text.row += 1
@@ -93,13 +96,19 @@ install = function(pkgList)
 		end for
 		
 		wait 0.35
-		print "Packages installed!"
+		if success then
+			print "Packages installed!"
+		else
+			print "Packages not installed"
+		end if
 	else
 		print "Aborting..."
 	end if
 end function
 
 download = function(pkg, fold)
+	success = false
+	
 	if fold then
 		mkdir pkg.name
 		cd pkg.name
@@ -109,6 +118,14 @@ download = function(pkg, fold)
 		p = pkg.url + f
 		raw = http.get(p)
 		
+		if raw isa string then
+			print "Error when getting file: " + f
+			print raw
+			print ""
+			success = false
+			break
+		end if
+		
 		fl = file.open(f, "w+")
 		fl.write raw
 		fl.close
@@ -117,6 +134,8 @@ download = function(pkg, fold)
 	if fold then
 		cd ".."
 	end if
+	
+	return success
 end function
 
 
