@@ -15,13 +15,41 @@ f=file.open("_temp.ms","w+");f.write(http.get("https://github.com/David-Avila/Th
 `preset` allows you to see and change the default terminal theme.
 
 
-`!` gives you acces to the files in buffer. To add a file to the buffer just open it in the editor. Then type `!` + the file name, or just the first couple of letters.
+`!` gives you access to the files in buffer. To add a file to the buffer just open it in the editor. Then type `!` + the file name, or just the first couple of letters.
 
 
 `chuser` allows you to change the username shown in the terminal. See 'Custom keywords' for more information.
 
 
 The `update` is used to grab the latest version of DSS from github.
+
+# DSPM: The Slow Package Manager
+`dspm` is the built-in package manager for DSS. It allows you to quickly install cool packages directly from MiniMicro without having to open a browser or file manager.
+
+You can install packages with `dspm install [option] PACKAGE_NAME`. For instance:
+
+`dspm install DSL` will install(download) my custom game library DSL.
+`dspm install -fold DSL` will do the same, but will save the file inside a folder with the name of the package.
+
+You can install multiple packages at the same time by just writing the names one next to the other, like so:
+
+`dspm install DSL Lib1 CoolPackage`
+
+Though at the moment there is only one package in the repo.
+
+**Add your package**
+If you have a cool package you want to share, fork this repo, edit `pkgs.ms` and add a line after the last `_add` call. Just like this:
+
+```
+_add "DSL", "https://github.com/David-Avila/The-Slow-Library/raw/refs/heads/main/", ["DSL_Lib.ms"]
+
+// add your package here
+_add "PACKAGE_NAME", "FILE_URL", [FILES]
+```
+
+Note that the third argument is a list, that allows you to have a package composed of multiple files and the package manager will automatically download all of them, as long as they share the same link.
+
+After that, create a pull request and I'll review it and merge it as son as i can.
 
 
 # Shell customization
@@ -59,7 +87,7 @@ For instance:
 ```
 custom.prompt = "%{PWD} $>"
 ```
-That code will print your current working directoy followed by `$>`, it would look something like:
+That code will print your current working directory followed by `$>`, it would look something like:
 
 `/usr/cool_project/ $>`
 
