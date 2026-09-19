@@ -8,13 +8,9 @@ progress = function
 	wait 0.25
 end function
 
-progress
-
 if not file.exists("/usr/dss") then
 	mkdir "/usr/dss"
 end if
-
-progress
 
 cd "/usr/dss"
 
