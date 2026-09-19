@@ -1,3 +1,5 @@
+import "dspm"
+
 echo = function(args)
 	print args
 end function
@@ -88,7 +90,8 @@ globals.dss.parse = function(cmd, argc, argv)
 	  "cat": @view,
 	  "preset": @dss.preset,
 	  "chuser": @dss.changeUser,
-	  "update": @dss.update}
+	  "update": @dss.update,
+	  "dspm": @dspm.parse}
 	
 	prop = null
 	

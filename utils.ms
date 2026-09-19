@@ -357,7 +357,7 @@ globals.dss.update = function
 	
 	// Downloading files
 	fileServer = "https://github.com/David-Avila/The-Slow-Shell/raw/refs/heads/main/"
-	dssFiles = ["dss.ms", "loader.ms", "utils.ms", "parser.ms", "keywords.ms"]
+	dssFiles = ["dss.ms", "loader.ms", "utils.ms", "parser.ms", "keywords.ms", "dspm.ms", "pkgs.ms"]
 	
 	progress
 	
