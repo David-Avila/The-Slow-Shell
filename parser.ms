@@ -8,6 +8,11 @@ editFile = function(f)
 	if not f then
 		f = globals._sourceFile
 		
+		if f == null then
+			print "Buffer empty, load a file first."
+			return
+		end if
+		
 		found = false
 		for i in dss.recentFiles
 			if file.name(f) == i.name then

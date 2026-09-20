@@ -118,16 +118,22 @@ download = function(pkg, fold)
 		p = pkg.url + f
 		raw = http.get(p)
 		
-		if raw isa string then
-			print "Error when getting file: " + f
-			print raw
-			print ""
+		fl = file.open(f, "w+")
+		
+		if raw isa RawData then
+			fl.write raw.utf8
+		else if raw isa string then
+			fl.write raw
+		else
 			success = false
+			print "Error when downloading file: " + f
+			print ""
+			print raw
+			print""
+			fl.close
 			break
 		end if
 		
-		fl = file.open(f, "w+")
-		fl.write raw
 		fl.close
 	end for
 	
