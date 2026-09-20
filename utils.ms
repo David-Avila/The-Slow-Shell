@@ -357,9 +357,8 @@ globals.dss.update = function
 	fileServer = "https://github.com/David-Avila/The-Slow-Shell/raw/refs/heads/main/"
 	dssFiles = ["dss.ms", "loader.ms", "utils.ms", "parser.ms", "keywords.ms", "dspm.ms", "pkgs.ms"]
 	
-	for f in dssFiles	
-		delete f
-		
+	progress
+	for f in dssFiles
 		p = fileServer + f
 		raw = http.get(p)
 		
@@ -370,7 +369,6 @@ globals.dss.update = function
 		progress
 	end for
 	
-	progress
 	progress
 	progress
 	progress

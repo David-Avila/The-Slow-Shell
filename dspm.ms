@@ -129,7 +129,7 @@ download = function(pkg, fold)
 			print "Error when downloading file: " + f
 			print ""
 			print raw
-			print""
+			print ""
 			fl.close
 			break
 		end if
