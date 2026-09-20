@@ -107,7 +107,7 @@ install = function(pkgList)
 end function
 
 download = function(pkg, fold)
-	success = false
+	success = true
 	
 	if fold then
 		mkdir pkg.name
