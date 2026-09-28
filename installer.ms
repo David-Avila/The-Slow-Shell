@@ -43,7 +43,7 @@ for id in templates.indexes
 		p = fileServer + "templates/" + id + "/" + tp
 		raw = http.get(p)
 		
-		f = "/usr/dss/templates" + id + "/" + tp
+		f = "/usr/dss/templates/" + id + "/" + tp
 		fl = file.open(f, "w+")
 		fl.write raw
 		fl.close
