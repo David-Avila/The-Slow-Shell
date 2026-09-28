@@ -10,9 +10,21 @@ if not globals.hasIndex("dss") then
 	dss.data.prompt = "%#55ee55$->%"
 	dss.data.defaultConfigFile = "/usr/.config/dss_conf.ms"
 	dss.data.configFile = "/usr/.config/dss_conf.ms"
+	
+	// default template
+	if not file.exists("/usr/.templates") then
+		mkdir "/usr/.templates"
+		mkdir "/usr/.templates/default"
+		
+		p = pwd + "dss/.templates/default/"
+		for f in file.children(p)
+			file.copy p+f, "/usr/.templates/default/" + f
+		end for
+		
+	end if
 end if
 
-if not env.importPaths.hasIndex("/usr/dss") then
+if env.importPaths.indexOf("/usr/dss") == null then
 	env.importPaths.push "/usr/dss"
 end if
 
@@ -74,14 +86,13 @@ start = function
 		key.clear
 		text.color = "#b4befe"
 		line = input("")
-		// todo: trim spaces
 		
 		if line == "" then
 			continue
 		end if
 		
 		while line.len > 0
-			if line[0] == "" then
+			if line[0] == "" or line[0] == " " then
 				line.removeVal line[0]
 			else
 				break

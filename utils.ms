@@ -377,4 +377,74 @@ globals.dss.update = function
 	print "Reboot MiniMicro to apply update."
 end function
 
+globals.dss.templates = function
+	temps = file.children("/usr/.templates")
+	
+	dss.formatPrint "%#89dceb=> Available templates%\n"
+	for f in temps
+		print f
+	end for
+end function
+
+globals.dss.create = function(cmd)
+	if cmd == null then
+		args = []
+	else
+		if cmd == "" then
+			args = []
+		else
+			args = cmd.split(" ")
+		end if
+	end if
+	
+	argc = args.len
+	
+	name = "NewProject"
+	template="default"
+	
+	if argc > 0 then
+		name = args[0]
+		if argc > 1 then
+			template = args[1]
+		end if
+	end if
+	
+	// Checking if folder already exists
+	p = pwd + "/" + name
+	if file.exists(p) then
+		inf = file.info(p)
+		if inf.isDirectory then
+			dss.formatPrint "%#f38ba8Error%: Folder + '" + name + "' already exists.\nTry another name.\n"
+			return
+		end if
+	end if
+	
+	// Check if template exists
+	p = "/usr/.templates/" + template
+	if not file.exists(p) then
+		dss.formatPrint "%#f38ba8Error%: Template '" + template + "' doesn't exist.\nType `%#89b4fatemplates%` to see available templates.\n"
+		return
+	end if
+	
+	print "Creating folder"
+	mkdir name
+	wait 0.2
+	
+	print "Entering project folder"
+	cd name
+	wait 0.2
+	
+	print "Copying files"
+	
+	files = file.children(p)
+	for f in files
+		file.copy p+"/"+f, f
+	end for
+	
+	print "Project Created!"
+	dss.ls
+end function
+
+
+
 
