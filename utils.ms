@@ -369,8 +369,42 @@ globals.dss.update = function
 		progress
 	end for
 	
-	progress
-	progress
+	// Updating templates
+	templates = {
+	  "default":["main.ms", "startup.ms"], 
+	  "dsl":["DSL_Lib.ms", "main.ms", "startup.ms"]}
+	
+	for id in templates.indexes
+		for tp in templates[id]
+			p = fileServer + "templates/" + id + "/" + tp
+			raw = http.get(p)
+			
+			f = "/usr/dss/templates/" + id + "/" + tp
+			fl = file.open(f, "w+")
+			fl.write raw
+			fl.close
+		end for
+		progress
+	end for
+	
+	if not file.exists("/usr/.templates") then
+		mkdir "/usr/.templates"
+		mkdir "/usr/.templates/default"
+		mkdir "/usr/.templates/dsl"
+	end if
+	
+	p = "/usr/dss/templates/default"
+	if not file.exists("/usr/.templates/default") then mkdir "/usr/.templates/default"
+	for f in file.children(p)
+		file.copy p+"/"+f, "/usr/.templates/default/" + f
+	end for
+	
+	p = "/usr/dss/templates/dsl"
+	if not file.exists("/usr/.templates/dsl") then mkdir "/usr/.templates/dsl"
+	for f in file.children(p)
+		file.copy p+"/"+f, "/usr/.templates/dsl/" + f
+	end for
+	
 	progress
 	print ""
 	
