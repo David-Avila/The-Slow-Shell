@@ -25,7 +25,7 @@ fileServer = "https://github.com/David-Avila/The-Slow-Shell/raw/refs/heads/main/
 dssFiles = ["dss.ms", "loader.ms", "utils.ms", "parser.ms", "keywords.ms", "dspm.ms", "pkgs.ms"]
 
 templates = {
-"default":["main.mds", "startup.ms"], 
+"default":["main.ms", "startup.ms"], 
 "dsl":["DSL_Lib.ms", "main.ms", "startup.ms"]}
 
 for f in dssFiles
@@ -39,7 +39,16 @@ for f in dssFiles
 end for
 
 for id in templates.indexes
-	
+	for tp in templates[id]
+		p = fileServer + "templates/" + id + "/" + tp
+		raw = http.get(p)
+		
+		f = pwd + "/templates" + id + "/" + tp
+		fl = file.open(f, "w+")
+		fl.write raw
+		fl.close
+	end for
+	progress
 end for
 
 
