@@ -15,10 +15,16 @@ if not globals.hasIndex("dss") then
 	if not file.exists("/usr/.templates") then
 		mkdir "/usr/.templates"
 		mkdir "/usr/.templates/default"
+		mkdir "/usr/.templates/dsl"
 		
 		p = pwd + "dss/.templates/default/"
 		for f in file.children(p)
 			file.copy p+f, "/usr/.templates/default/" + f
+		end for
+		
+		p = pwd + "dss/.templates/dsl/"
+		for f in file.children(p)
+			file.copy p+f, "/usr/.templates/dsl/" + f
 		end for
 		
 	end if
