@@ -12,12 +12,20 @@ if not file.exists("/usr/dss") then
 	mkdir "/usr/dss"
 end if
 
+if not file.exists("/usr/.templates") then
+	mkdir "/usr/templates"
+	mkdir "/usr/templates/default"
+	mkdir "/usr/templates/dsl"
+end if
+
 cd "/usr/dss"
 
 progress
 // Downloading files
 fileServer = "https://github.com/David-Avila/The-Slow-Shell/raw/refs/heads/main/"
 dssFiles = ["dss.ms", "loader.ms", "utils.ms", "parser.ms", "keywords.ms", "dspm.ms", "pkgs.ms"]
+
+templates = ["default", "dsl"]
 
 progress
 
