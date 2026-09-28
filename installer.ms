@@ -54,6 +54,15 @@ for id in templates.indexes
 	progress
 end for
 
+p = "/usr/dss/templates/default"
+for f in file.children(p)
+	file.copy p+"/"+f, "/usr/.templates/default/" + f
+end for
+
+p = "/usr/dss/templates/dsl"
+for f in file.children(p)
+	file.copy p+"/"+f, "/usr/.templates/dsl/" + f
+end for
 
 // setting shell on startup file
 cd "/usr"
@@ -61,8 +70,8 @@ cd "/usr"
 progress
 
 stF = file.open("startup.ms", "a+")
-stF.write char(13)
-stF.write char(13)
+stF.write char(10)
+stF.write char(10)
 stF.write "env.shell = ""/usr/dss/dss"""
 stF.close
 
@@ -70,7 +79,7 @@ progress
 
 print ""
 
-cd "/"
+cd "/usr"
 
 // greet message
 text.color = "#89b4fa"
