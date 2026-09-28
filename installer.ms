@@ -25,7 +25,10 @@ progress
 fileServer = "https://github.com/David-Avila/The-Slow-Shell/raw/refs/heads/main/"
 dssFiles = ["dss.ms", "loader.ms", "utils.ms", "parser.ms", "keywords.ms", "dspm.ms", "pkgs.ms"]
 
-templates = ["default", "dsl"]
+templates = {
+"default":[], 
+"dsl":[]}
+
 
 progress
 
