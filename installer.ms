@@ -10,12 +10,15 @@ end function
 
 if not file.exists("/usr/dss") then
 	mkdir "/usr/dss"
+	mkdir "/usr/dss/templates"
+	mkdir "/usr/dss/templates/default"
+	mkdir "/usr/dss/templates/dsl"
 end if
 
 if not file.exists("/usr/.templates") then
-	mkdir "/usr/templates"
-	mkdir "/usr/templates/default"
-	mkdir "/usr/templates/dsl"
+	mkdir "/usr/.templates"
+	mkdir "/usr/.templates/default"
+	mkdir "/usr/.templates/dsl"
 end if
 
 cd "/usr/dss"
