@@ -20,27 +20,26 @@ end if
 
 cd "/usr/dss"
 
-progress
 // Downloading files
 fileServer = "https://github.com/David-Avila/The-Slow-Shell/raw/refs/heads/main/"
 dssFiles = ["dss.ms", "loader.ms", "utils.ms", "parser.ms", "keywords.ms", "dspm.ms", "pkgs.ms"]
 
 templates = {
-"default":[], 
-"dsl":[]}
+"default":["main.mds", "startup.ms"], 
+"dsl":["DSL_Lib.ms", "main.ms", "startup.ms"]}
 
-
-progress
-
-for f in dssFiles	
-	progress
-	
+for f in dssFiles
 	p = fileServer + f
 	raw = http.get(p)
 	
 	fl = file.open(f, "w+")
 	fl.write raw
 	fl.close
+	progress
+end for
+
+for id in templates.indexes
+	
 end for
 
 
