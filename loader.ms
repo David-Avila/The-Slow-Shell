@@ -37,8 +37,3 @@ globals.dss.saveConfig = function(fPath)
 	
 	file.writeLines(dss.data.configFile, lines)
 end function
-
-
-
-
-

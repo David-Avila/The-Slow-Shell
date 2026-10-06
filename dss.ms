@@ -4,6 +4,7 @@ if not globals.hasIndex("dss") then
 	
 	// default data
 	dss.recentFiles = []
+	dss.execBuffer = null
 	dss.data = {}
 	dss.data.user = "user"
 	dss.data.newLine = true
@@ -35,6 +36,7 @@ globals.setupDSS = function
 	// default data
 	if not globals.dss.hasIndex("recentFiles") then
 		globals.dss.recentFiles = []
+		globals.dss.execBuffer = null
 	end if
 	
 	globals.dss.data = {}
@@ -53,11 +55,7 @@ globals.setupDSS
 start = function
 	text.color = "#cdd6f4"
 	
-	if not globals.hasIndex("dss") then
-		globals.setupDSS
-	end if
-	
-	dss.data = globals.setupDSS
+	globals.setupDSS
 	debug_on = false
 	
 	while true

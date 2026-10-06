@@ -280,13 +280,48 @@ end function
 globals.dss.history = function(cmd="!")
 	if not dss.hasIndex("recentFiles") then
 		dss.recentFiles = []
+		dss.execBuffer = null
 		dss.formatPrint "%#89dceb=> No files opened \n"
 		return
 	end if
 	
+	if not dss.hasIndex("execBuffer") then
+		dss.execBuffer = null
+	end if
+	
 	if cmd == "!clear" then
 		dss.recentFiles = []
+		dss.execBuffer = null
 		return
+	else if cmd.len > 1 and cmd[1] == "!" then
+		if dss.recentFiles.len == 0 then
+			dss.formatPrint "%#89dceb=> No files opened \n"
+			return
+		end if
+		
+		if dss.execBuffer == null then
+			fileSearch = cmd[2:cmd.len].lower
+			
+			if fileSearch == "" then
+				dss.formatPrint "%#89dceb=> Buffer is empty and not file name passed.\n"
+				return
+			end if
+			
+			if fileSearch[-3:] != ".ms" then
+				fileSearch += ".ms"
+			end if
+			
+			if not file.exists(fileSearch) then
+				dss.formatPrint "%#89dceb=> Can't load " + fileSearch + " into buffer. It can't be found.\n"
+			else
+				dss.execBuffer = file.info(fileSearch).path
+				load dss.execBuffer
+				run
+			end if
+		else
+			load dss.execBuffer
+			run
+		end if
 	else if cmd == "!" then
 		if dss.recentFiles.len == 0 then
 			dss.formatPrint "%#89dceb=> No files opened\n"
