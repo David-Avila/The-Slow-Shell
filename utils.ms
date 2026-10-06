@@ -280,9 +280,7 @@ end function
 globals.dss.history = function(cmd="!")
 	if not dss.hasIndex("recentFiles") then
 		dss.recentFiles = []
-		dss.execBuffer = null
 		dss.formatPrint "%#89dceb=> No files opened \n"
-		return
 	end if
 	
 	if not dss.hasIndex("execBuffer") then
@@ -294,16 +292,11 @@ globals.dss.history = function(cmd="!")
 		dss.execBuffer = null
 		return
 	else if cmd.len > 1 and cmd[1] == "!" then
-		if dss.recentFiles.len == 0 then
-			dss.formatPrint "%#89dceb=> No files opened \n"
-			return
-		end if
-		
 		if dss.execBuffer == null then
-			fileSearch = cmd[2:cmd.len].lower
+			fileSearch = cmd[2:cmd.len]
 			
 			if fileSearch == "" then
-				dss.formatPrint "%#89dceb=> Buffer is empty and not file name passed.\n"
+				dss.formatPrint "%#89dceb=> Buffer is empty and file name not passed.\n"
 				return
 			end if
 			
@@ -314,12 +307,17 @@ globals.dss.history = function(cmd="!")
 			if not file.exists(fileSearch) then
 				dss.formatPrint "%#89dceb=> Can't load " + fileSearch + " into buffer. It can't be found.\n"
 			else
-				dss.execBuffer = file.info(fileSearch).path
+				p = file.info(fileSearch).path
+				dss.execBuffer = p + ""
 				load dss.execBuffer
 				run
 			end if
 		else
-			load dss.execBuffer
+			inf = file.info(dss.execBuffer)
+			fn = file.name(inf.path)
+			
+			cd inf.path - fn
+			load fn
 			run
 		end if
 	else if cmd == "!" then
